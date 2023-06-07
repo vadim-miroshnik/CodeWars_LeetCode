@@ -21,31 +21,38 @@
 # countAndSay(4) = say "21" = one 2 + one 1 = "12" + "11" = "1211"
 # https://leetcode.com/problems/count-and-say/
 class Solution:
-    def countAndSay(self, n: int) -> str:
-        """recursive version"""
-        def say(n: int) -> str:
-            curr, cnt, res = 0, 0, ""
-            for i in str(n):
-                if curr == i:
-                    cnt += 1
-                else:
-                    if cnt > 0:
-                        res += str(cnt) + str(curr)
-                    curr = i
-                    cnt = 1
-            res += str(cnt) + str(curr)
-            return res
+    def say(self, n: int) -> str:
+        curr, cnt, res = 0, 0, ""
+        for i in str(n):
+            if curr == i:
+                cnt += 1
+            else:
+                if cnt > 0:
+                    res += str(cnt) + str(curr)
+                curr = i
+                cnt = 1
+        res += str(cnt) + str(curr)
+        return res
 
+    def countAndSay1(self, n: int) -> str:
+        """recursive version"""
         if n == 1:
             return '1'
         else:
             prev = self.countAndSay(n-1)
-            return say(prev)
+            return self.say(prev)
+
+    def countAndSay2(self, n: int) -> str:
+        """loop version"""
+        res = "1"
+        for i in range(n-1):
+            res = self.say(res)
+        return res
 
 
 sol = Solution()
-res = sol.countAndSay(4)
+res = sol.countAndSay2(4)
 print(res)
 
-res = sol.countAndSay(1)
+res = sol.countAndSay2(1)
 print(res)
