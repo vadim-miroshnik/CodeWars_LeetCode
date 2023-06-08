@@ -1,6 +1,9 @@
 # Сделать функцию deep_copy. Она должна создавать копию передаваемого в него объекта.
 # Надо поддерживать как минимум три типа: list dict set.
 # Естественно, не пользуясь встроенной функцией
+import copy
+
+
 def list_copier(obj: list) -> list:
     res = []
     for item in obj:
@@ -53,3 +56,13 @@ set1 = {1, 2, 3}
 set2 = deep_copy(set1)
 print(f"set orig - {id(set1)}")
 print(f"set copy - {id(set2)}")
+
+dd1 = {(1, 1): 43, (1, 2): 12, (1, 3): 35}
+dd2 = deep_copy(dd1)
+for key in dd1.keys():
+    print(f"orig dict keys - {key} - {id(key)}")
+for key in dd2.keys():
+    print(f"my deepcopy keys - {key} - {id(key)}")
+dd3 = copy.deepcopy(dd1)
+for key in dd3.keys():
+    print(f"py deepcopy keys - {key} - {id(key)}")
