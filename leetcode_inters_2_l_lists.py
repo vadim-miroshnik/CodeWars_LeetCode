@@ -62,12 +62,26 @@ class Solution:
         return None
 
     def getIntersectionNode2(self, headA: ListNode, headB: ListNode) -> ListNode | None:
-        """Neetcode solution O(n+m)"""
+        """Neetcode solution - Two Pointers. Time O(n+m), Space O(1)"""
         l1, l2 = headA, headB
         while l1 != l2:
             l1 = l1.next if l1 else headB
             l2 = l2.next if l2 else headA
         return l1
+
+    def getIntersectionNode3(self, headA: ListNode, headB: ListNode) -> ListNode | None:
+        """Leetcode solution - Hashset. Time O(n+m), Space O(n)"""
+        first_set = set()
+        curr = headA
+        while curr:
+            first_set.add(curr)
+            curr = curr.next
+        curr = headB
+        while curr:
+            if curr in first_set:
+                return curr
+            curr = curr.next
+        return None
 
 
 def CustomJudge(intersectVal, listA: list, listB: list, skipA: int, skipB: int) -> bool:
