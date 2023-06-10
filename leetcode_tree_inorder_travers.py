@@ -33,11 +33,9 @@ class Solution:
         """my first solution - recursive"""
         res = []
         if root:
-            if root.left:
-                res = self.inorderTraversal(root.left)
+            res = self.inorderTraversal1(root.left)
             res.append(root.val)
-            if root.right:
-                res.extend(self.inorderTraversal(root.right))
+            res.extend(self.inorderTraversal1(root.right))
         return res
 
     def inorderTraversal2(self, root: TreeNode | None) -> list[int]:
@@ -56,4 +54,4 @@ class Solution:
 
 sol = Solution()
 bt = to_binary_tree([1, None, 2, 3])
-print(sol.inorderTraversal2(bt))
+print(sol.inorderTraversal1(bt))
