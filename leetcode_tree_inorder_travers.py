@@ -47,7 +47,7 @@ class Solution:
                 stack.append(cur)
                 cur = cur.left
             cur = stack.pop()
-            res.append(cur.val)
+            res.append(cur.val)  # начинаем вывод, когда дошли до левого края
             cur = cur.right
         return res
 
